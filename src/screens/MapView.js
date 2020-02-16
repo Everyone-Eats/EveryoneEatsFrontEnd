@@ -1,19 +1,18 @@
-import React from "react"
+import React from "react";
 
-import Map from '../components/Map'
+import Map from "../components/Map";
 
-import "../css/MapView.css"
+import "../css/MapView.css";
 
 function MapView(props) {
-  return(
+  return (
     <div>
       {/* <div className="floating-container">
 
       </div> */}
-      <Map />
-
+      <Map mapDisplay={props.mapDisplay} />
     </div>
-  )
+  );
 }
 
-export default MapView
+export default MapView;
