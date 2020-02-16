@@ -2,11 +2,16 @@ import React from "react"
 
 import Map from '../components/Map'
 
-function MapView() {
-  
+import "../css/MapView.css"
+
+function MapView(props) {
   return(
     <div>
+      <div className="floating-container">
+
+      </div>
       <Map />
+
     </div>
   )
 }

@@ -1,0 +1,11 @@
+.floating-container {
+  position: fixed;
+  height: 94vh;
+  width: 30vw;
+  left: 3vh;
+  top: 3vh;
+  background-color: white;
+  border-radius: 13px;
+  box-shadow: rgba(20,20,20,.2) 1px 1px 10px;
+  z-index: 1;
+}

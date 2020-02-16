@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import tt from '@tomtom-international/web-sdk-maps';
 import { geolocated } from "react-geolocated";
+import '../css/map.css'
 
-
+console.log(process.env)
 class Map extends Component {
   constructor(props) {
     super(props)
     this.state = {
       map: {},
+      locations: [[-122.478468, 37.769167], [-122.479468, 37.769167], [-122.478468, 37.768167],],
+      locationDivs: [],
     }
   }
 
@@ -22,10 +25,21 @@ class Map extends Component {
       zoom: 12,
     })
     map.resize()
+    // map.addControl(new tt.FullscreenControl());
+    // map.addControl(new tt.NavigationControl())
 
-    this.setState({map})
+    this.setState({ map })
     
-    console.log(this.props)
+  }
+
+  createMarker(location) {
+    console.log(location)
+    let marker = new tt.Marker({
+    }).setLngLat(new tt.LngLat(location[0], location[1]))
+    .addTo(this.state.map)
+
+
+    // marker.addTo(this.state.map)
   }
 
   zoomMap() {
@@ -33,18 +47,22 @@ class Map extends Component {
       this.state.map.flyTo({
         center: [this.props.coords.longitude, this.props.coords.latitude]
       })
+      this.state.locations.forEach((location) => {
+        this.createMarker(location)
+      })
     }
   }
 
 
   render() {
-    
-    if(this.props.coords) {
+
+    if (this.props.coords) {
       this.zoomMap()
     }
 
     return (
       < div id="map" className="map" >
+        {this.state.locationDivs}
       </div >
     );
   }
