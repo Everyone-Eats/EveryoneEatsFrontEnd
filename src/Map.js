@@ -10,18 +10,15 @@ class Map extends Component {
       key: 'gixNACGBaKtGVVUXTFkNZld0pVqBxM3z',
       style: 'tomtom://vector/1/basic-main',
       container: 'map',
-      zoom: 12,
-      center: [31,-121],
-
     });
-
+    this.map.resize()
   }
 
 
   render() {
     return (
-        < div id="map" className="map" >
-        </div >
+      < div id="map" className="map" >
+      </div >
     );
   }
 };
