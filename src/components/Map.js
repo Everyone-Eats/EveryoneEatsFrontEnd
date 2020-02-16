@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import tt from '@tomtom-international/web-sdk-maps';
 import { geolocated } from "react-geolocated";
-import '../css/map.css'
 
 console.log(process.env)
 class Map extends Component {
@@ -34,12 +33,18 @@ class Map extends Component {
 
   createMarker(location) {
     console.log(location)
-    let marker = new tt.Marker({
+    const marker = new tt.Marker({
+      anchor: "bottom"
     }).setLngLat(new tt.LngLat(location[0], location[1]))
     .addTo(this.state.map)
 
+    // marker.setPopup(new tt.Popup({offset: 30}).setText("hello"));
+    
+    // console.log(marker.on("click", (e) => {
+    //   console.log(e)
+    // }))
 
-    // marker.addTo(this.state.map)
+
   }
 
   zoomMap() {

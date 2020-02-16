@@ -7,9 +7,9 @@ import "../css/MapView.css"
 function MapView(props) {
   return(
     <div>
-      <div className="floating-container">
+      {/* <div className="floating-container">
 
-      </div>
+      </div> */}
       <Map />
 
     </div>
