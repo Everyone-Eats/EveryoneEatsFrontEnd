@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import tt from '@tomtom-international/web-sdk-maps';
 import { geolocated } from "react-geolocated";
 
@@ -8,27 +9,39 @@ class Map extends Component {
     super(props)
     this.state = {
       map: {},
-      locations: [[-122.478468, 37.769167], [-122.479468, 37.769167], [-122.478468, 37.768167],],
+      locations: [],
       locationDivs: [],
     }
   }
 
-
-
   componentDidMount() {
+    const { search } = this.props;
+    let type = search === 'donors' ? 'donor' : 'charity';
     const map = tt.map({
-      key: 'gixNACGBaKtGVVUXTFkNZld0pVqBxM3z',
+      key: process.env.REACT_APP_TOMTOM_KEY,
       style: 'tomtom://vector/1/basic-main',
       container: 'map',
       center: [-122.478468, 37.769167],
       zoom: 12,
     })
     map.resize()
+    axios.get('http://localhost:8000/api/users', { params: { type }})
+    .then(response => {
+      const { users } = response.data;
+      const locations = [];
+      users.forEach(user => {
+        locations.push([user.position.long, user.position.lat]);
+        this.createMarker([user.position.long, user.position.lat]);
+      })
+      this.setState({ locations });
+    })
+    .catch(error => {
+      console.log(error);
+    })
     // map.addControl(new tt.FullscreenControl());
     // map.addControl(new tt.NavigationControl())
 
     this.setState({ map })
-    
   }
 
   createMarker(location) {
@@ -43,8 +56,6 @@ class Map extends Component {
     // console.log(marker.on("click", (e) => {
     //   console.log(e)
     // }))
-
-
   }
 
   zoomMap() {
@@ -58,13 +69,10 @@ class Map extends Component {
     }
   }
 
-
   render() {
-
     if (this.props.coords) {
       this.zoomMap()
     }
-
     return (
       < div id="map" className="map" >
         {this.state.locationDivs}
