@@ -45,7 +45,6 @@ class Map extends Component {
   }
 
   createMarker(location) {
-    console.log(location)
     const marker = new tt.Marker({
       anchor: "bottom"
     }).setLngLat(new tt.LngLat(location[0], location[1]))
