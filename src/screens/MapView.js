@@ -1,5 +1,5 @@
 import React from "react"
-import Map from '../components/Map'
+import MapContainer from '../components/Map'
 import "../css/MapView.css"
 
 function MapView(props) {
@@ -8,7 +8,7 @@ function MapView(props) {
     <div>
       {/* <div className="floating-container">
       </div> */}
-      <Map search={search}/>
+      <MapContainer search={search}/>
 
     </div>
   );
