@@ -51,9 +51,9 @@ class MapContainer extends Component {
 
   render() {
     const { center } = this.state;
-    const lat = center ? center.lat : 37.7781452;
-    const lng = center ? center.lng : -122.46422129999998;
-    const zoom = center ? 15 : 1;
+    const lat = center ? center.lat : 37.774929;
+    const lng = center ? center.lng : 122.419418;
+    const zoom = center ? 14 : 1;
     return (
       <Map
         google = { this.props.google }
@@ -62,7 +62,7 @@ class MapContainer extends Component {
           width: '100%',
           height: '100%'
         } }
-        initialCenter = { { lat: lat, lng: lng} }
+        center = { {lat: lat, lng: lng} }
       >
         {this.displayMarkers()}
       </Map>
